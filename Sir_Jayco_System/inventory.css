@@ -1,0 +1,246 @@
+
+
+.page {
+  width: 100%;
+  max-width: 1100px; /* wider canvas like the mockup */
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  padding: 24px;
+  margin: 20px auto;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;     
+}
+
+.panel {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: #f9fafb; /* keeps light theme, distinct from card */
+  padding: 16px;
+}
+
+.section-title {
+  margin: 8px 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center; /* center like the mockup */
+}
+
+.topbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.nav-btn {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #f3f4f6;
+  border: 1px solid var(--border);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.nav-btn:hover {
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* left wider for product table */
+  gap: 16px;
+  align-items: stretch;
+  margin-top: 8px;
+  flex: 1 1 auto;             /* take remaining space */
+  min-height: 0;           /* allow children to shrink */
+}
+
+.two-col .col {
+  min-width: 0; /* prevent overflow in grid children */
+  min-height: 0; /* allow inner flex children to shrink */
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 12px 0 20px;
+}
+
+.summary-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #f9fafb;
+  padding: 14px;
+}
+
+.summary-label {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.summary-value {
+  font-weight: 800;
+  font-size: 22px;
+  margin-top: 6px;
+}
+
+.section-title {
+  margin: 8px 0 6px;
+  font-size: 16px;
+}
+
+.alert {
+  margin: 8px 0 10px;
+  padding: 10px 12px;
+  border: 1px solid #fde68a;
+  background: #fffbeb;
+  color: #92400e;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.add-form .grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.6fr 0.6fr;
+  gap: 12px;
+}
+
+.table-wrapper {
+  margin-top: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+.table thead th {
+  text-align: left;
+  font-size: 13px;
+  color: var(--muted);
+  padding: 12px;
+  background: #f3f4f6;
+  position: sticky; /* keep header visible while scrolling */
+  top: 0;
+  z-index: 1;
+}
+
+.table tbody td {
+  padding: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.products-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;               /* fill available space */
+  min-height: 0; /* allow children to shrink inside flex/grid */
+  overflow: hidden;            /* clip inner scroll to rounded panel */
+}
+
+/* Make the section containing the title and table a flex column,
+   so the table wrapper can take remaining height and scroll */
+.products-panel .list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0; /* critical for inner scroll in flex containers */
+}
+
+.products-form .table-wrapper,
+.products-panel .table-wrapper { /* scroll only inside the left products area */
+  background: #ffffff;
+  border-radius: 12px;
+  flex: 1 1 0;     /* take remaining height under the title */
+  min-height: 0;
+  max-height: 100%;
+  display: block;
+  overflow-y: auto; /* vertical scroll here */
+  overflow-x: auto; /* handle narrow screens */
+}
+
+.row-actions {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.btn-secondary.small,
+.btn-danger.small {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 7px;
+}
+
+.btn-secondary.small {
+  border: 1px solid var(--border);
+  background: #f9fafb;
+  color: var(--text);
+}
+
+.btn-secondary.small:hover {
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.btn-danger.small {
+  border: 0;
+  background: #ef4444;
+  color: #fff;
+}
+
+.btn-danger.small:hover {
+  filter: brightness(0.95);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+  .summary {
+    grid-template-columns: 1fr;
+  }
+  .add-form .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Make the right add-form match the products panel height */
+.add-form {
+  display: flex;
+  flex-direction: column;
+  height: 53%;
+  min-height: 0; /* allow inner content to shrink within grid */
+  margin-top: 10px;
+}
+/* Floating toast alert (same look as cashier) */
+.toast-alert {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+  border-radius: 10px;
+  padding: 10px 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  transition: all 300ms ease;
+}
+.toast-alert.hide {
+  opacity: 0;
+  transform: translate(-50%, -10px);
+}
